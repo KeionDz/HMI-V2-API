@@ -1,98 +1,222 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# HMI V2 API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend API for the HMI V2 application, built with NestJS and TypeScript.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Requirements
 
-## Description
+Install these before setting up the project:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js 20 or newer
+- npm
+- Git
 
-## Project setup
+Check your installed versions:
 
 ```bash
-$ npm install
+node -v
+npm -v
+git --version
 ```
 
-## Compile and run the project
+## Clone the Repository
+
+Clone the project from GitHub:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/KeionDz/HMI-V2-API.git
 ```
 
-## Run tests
+Go inside the project folder:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd HMI-V2-API
 ```
 
-## Deployment
+## Create Your Working Branch
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Always create a new branch before making changes.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Update your local `main` branch first:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+git checkout main
+git pull origin main
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Create a new branch:
 
-## Resources
+```bash
+git checkout -b feature/your-feature-name
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+Branch name examples:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+git checkout -b feature/user-login
+git checkout -b fix/cors-setup
+git checkout -b chore/update-readme
+```
 
-## Support
+## Install Dependencies
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Install all project packages:
 
-## Stay in touch
+```bash
+npm install
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+This will install the dependencies listed in `package.json`, including NestJS, `class-validator`, and `class-transformer`.
 
-## License
+## Run the Application
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+For local development, run the app in watch mode:
+
+```bash
+npm run start:dev
+```
+
+By default, the API runs on:
+
+```text
+http://localhost:3000
+```
+
+Other run commands:
+
+```bash
+# run once without watch mode
+npm run start
+
+# run in debug mode
+npm run start:debug
+
+# run the compiled production build
+npm run start:prod
+```
+
+## Build the Project
+
+Compile the TypeScript project:
+
+```bash
+npm run build
+```
+
+The compiled output will be generated in the `dist` folder.
+
+## Check Code Quality
+
+Run linting:
+
+```bash
+npm run lint
+```
+
+Format the code:
+
+```bash
+npm run format
+```
+
+## Run Tests
+
+Run unit tests:
+
+```bash
+npm run test
+```
+
+Run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+Run test coverage:
+
+```bash
+npm run test:cov
+```
+
+Run end-to-end tests:
+
+```bash
+npm run test:e2e
+```
+
+## Daily Development Workflow
+
+Use this workflow when working on a task:
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b feature/your-task-name
+npm install
+npm run start:dev
+```
+
+Before pushing your work:
+
+```bash
+npm run lint
+npm run test
+git status
+git add .
+git commit -m "Describe your change"
+git push origin feature/your-task-name
+```
+
+After pushing, create a pull request from your branch into `main`.
+
+## Common Git Commands
+
+Check the current branch and changed files:
+
+```bash
+git status
+```
+
+View all local branches:
+
+```bash
+git branch
+```
+
+Switch to an existing branch:
+
+```bash
+git checkout branch-name
+```
+
+Get the latest changes from `main`:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+Delete a local branch after it has been merged:
+
+```bash
+git branch -d branch-name
+```
+
+## Troubleshooting
+
+If dependencies seem outdated or broken, reinstall them:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+On Windows PowerShell, use:
+
+```powershell
+Remove-Item -Recurse -Force node_modules
+Remove-Item package-lock.json
+npm install
+```
+
+If the port is already in use, stop the other process or update the application port in the project configuration.
