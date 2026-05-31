@@ -1,4 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { JwtCookieGuard } from '../auth/guard/jwt-cookie.guard';
+import { RoleGuard } from '../auth/guard/role.guard';
 import { PalletController } from './pallet.controller';
 import { PalletService } from './pallet.service';
 
@@ -14,7 +16,12 @@ describe('PalletController', () => {
           useValue: {},
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(JwtCookieGuard)
+      .useValue({ canActivate: jest.fn(() => true) })
+      .overrideGuard(RoleGuard)
+      .useValue({ canActivate: jest.fn(() => true) })
+      .compile();
 
     controller = module.get<PalletController>(PalletController);
   });

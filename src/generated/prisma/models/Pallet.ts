@@ -206,6 +206,7 @@ export type PalletWhereInput = {
   beginCell?: Prisma.StringFilter<"Pallet"> | string
   endStation?: Prisma.StringFilter<"Pallet"> | string
   layerId?: Prisma.StringFilter<"Pallet"> | string
+  layer?: Prisma.XOR<Prisma.LayerScalarRelationFilter, Prisma.LayerWhereInput>
 }
 
 export type PalletOrderByWithRelationInput = {
@@ -217,6 +218,7 @@ export type PalletOrderByWithRelationInput = {
   beginCell?: Prisma.SortOrder
   endStation?: Prisma.SortOrder
   layerId?: Prisma.SortOrder
+  layer?: Prisma.LayerOrderByWithRelationInput
 }
 
 export type PalletWhereUniqueInput = Prisma.AtLeast<{
@@ -231,6 +233,7 @@ export type PalletWhereUniqueInput = Prisma.AtLeast<{
   beginCell?: Prisma.StringFilter<"Pallet"> | string
   endStation?: Prisma.StringFilter<"Pallet"> | string
   layerId?: Prisma.StringFilter<"Pallet"> | string
+  layer?: Prisma.XOR<Prisma.LayerScalarRelationFilter, Prisma.LayerWhereInput>
 }, "id">
 
 export type PalletOrderByWithAggregationInput = {
@@ -269,7 +272,7 @@ export type PalletCreateInput = {
   palletCode: string
   beginCell: string
   endStation: string
-  layerId: string
+  layer: Prisma.LayerCreateNestedOneWithoutPalletsInput
 }
 
 export type PalletUncheckedCreateInput = {
@@ -291,7 +294,7 @@ export type PalletUpdateInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
-  layerId?: Prisma.StringFieldUpdateOperationsInput | string
+  layer?: Prisma.LayerUpdateOneRequiredWithoutPalletsNestedInput
 }
 
 export type PalletUncheckedUpdateInput = {
@@ -324,7 +327,6 @@ export type PalletUpdateManyMutationInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
-  layerId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PalletUncheckedUpdateManyInput = {
@@ -371,8 +373,159 @@ export type PalletMinOrderByAggregateInput = {
   layerId?: Prisma.SortOrder
 }
 
+export type PalletListRelationFilter = {
+  every?: Prisma.PalletWhereInput
+  some?: Prisma.PalletWhereInput
+  none?: Prisma.PalletWhereInput
+}
+
+export type PalletOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type PalletCreateNestedManyWithoutLayerInput = {
+  create?: Prisma.XOR<Prisma.PalletCreateWithoutLayerInput, Prisma.PalletUncheckedCreateWithoutLayerInput> | Prisma.PalletCreateWithoutLayerInput[] | Prisma.PalletUncheckedCreateWithoutLayerInput[]
+  connectOrCreate?: Prisma.PalletCreateOrConnectWithoutLayerInput | Prisma.PalletCreateOrConnectWithoutLayerInput[]
+  createMany?: Prisma.PalletCreateManyLayerInputEnvelope
+  connect?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+}
+
+export type PalletUncheckedCreateNestedManyWithoutLayerInput = {
+  create?: Prisma.XOR<Prisma.PalletCreateWithoutLayerInput, Prisma.PalletUncheckedCreateWithoutLayerInput> | Prisma.PalletCreateWithoutLayerInput[] | Prisma.PalletUncheckedCreateWithoutLayerInput[]
+  connectOrCreate?: Prisma.PalletCreateOrConnectWithoutLayerInput | Prisma.PalletCreateOrConnectWithoutLayerInput[]
+  createMany?: Prisma.PalletCreateManyLayerInputEnvelope
+  connect?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+}
+
+export type PalletUpdateManyWithoutLayerNestedInput = {
+  create?: Prisma.XOR<Prisma.PalletCreateWithoutLayerInput, Prisma.PalletUncheckedCreateWithoutLayerInput> | Prisma.PalletCreateWithoutLayerInput[] | Prisma.PalletUncheckedCreateWithoutLayerInput[]
+  connectOrCreate?: Prisma.PalletCreateOrConnectWithoutLayerInput | Prisma.PalletCreateOrConnectWithoutLayerInput[]
+  upsert?: Prisma.PalletUpsertWithWhereUniqueWithoutLayerInput | Prisma.PalletUpsertWithWhereUniqueWithoutLayerInput[]
+  createMany?: Prisma.PalletCreateManyLayerInputEnvelope
+  set?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  disconnect?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  delete?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  connect?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  update?: Prisma.PalletUpdateWithWhereUniqueWithoutLayerInput | Prisma.PalletUpdateWithWhereUniqueWithoutLayerInput[]
+  updateMany?: Prisma.PalletUpdateManyWithWhereWithoutLayerInput | Prisma.PalletUpdateManyWithWhereWithoutLayerInput[]
+  deleteMany?: Prisma.PalletScalarWhereInput | Prisma.PalletScalarWhereInput[]
+}
+
+export type PalletUncheckedUpdateManyWithoutLayerNestedInput = {
+  create?: Prisma.XOR<Prisma.PalletCreateWithoutLayerInput, Prisma.PalletUncheckedCreateWithoutLayerInput> | Prisma.PalletCreateWithoutLayerInput[] | Prisma.PalletUncheckedCreateWithoutLayerInput[]
+  connectOrCreate?: Prisma.PalletCreateOrConnectWithoutLayerInput | Prisma.PalletCreateOrConnectWithoutLayerInput[]
+  upsert?: Prisma.PalletUpsertWithWhereUniqueWithoutLayerInput | Prisma.PalletUpsertWithWhereUniqueWithoutLayerInput[]
+  createMany?: Prisma.PalletCreateManyLayerInputEnvelope
+  set?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  disconnect?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  delete?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  connect?: Prisma.PalletWhereUniqueInput | Prisma.PalletWhereUniqueInput[]
+  update?: Prisma.PalletUpdateWithWhereUniqueWithoutLayerInput | Prisma.PalletUpdateWithWhereUniqueWithoutLayerInput[]
+  updateMany?: Prisma.PalletUpdateManyWithWhereWithoutLayerInput | Prisma.PalletUpdateManyWithWhereWithoutLayerInput[]
+  deleteMany?: Prisma.PalletScalarWhereInput | Prisma.PalletScalarWhereInput[]
+}
+
+export type PalletCreateWithoutLayerInput = {
+  id?: string
+  label: string
+  description: string
+  taskId: string
+  palletCode: string
+  beginCell: string
+  endStation: string
+}
+
+export type PalletUncheckedCreateWithoutLayerInput = {
+  id?: string
+  label: string
+  description: string
+  taskId: string
+  palletCode: string
+  beginCell: string
+  endStation: string
+}
+
+export type PalletCreateOrConnectWithoutLayerInput = {
+  where: Prisma.PalletWhereUniqueInput
+  create: Prisma.XOR<Prisma.PalletCreateWithoutLayerInput, Prisma.PalletUncheckedCreateWithoutLayerInput>
+}
+
+export type PalletCreateManyLayerInputEnvelope = {
+  data: Prisma.PalletCreateManyLayerInput | Prisma.PalletCreateManyLayerInput[]
+}
+
+export type PalletUpsertWithWhereUniqueWithoutLayerInput = {
+  where: Prisma.PalletWhereUniqueInput
+  update: Prisma.XOR<Prisma.PalletUpdateWithoutLayerInput, Prisma.PalletUncheckedUpdateWithoutLayerInput>
+  create: Prisma.XOR<Prisma.PalletCreateWithoutLayerInput, Prisma.PalletUncheckedCreateWithoutLayerInput>
+}
+
+export type PalletUpdateWithWhereUniqueWithoutLayerInput = {
+  where: Prisma.PalletWhereUniqueInput
+  data: Prisma.XOR<Prisma.PalletUpdateWithoutLayerInput, Prisma.PalletUncheckedUpdateWithoutLayerInput>
+}
+
+export type PalletUpdateManyWithWhereWithoutLayerInput = {
+  where: Prisma.PalletScalarWhereInput
+  data: Prisma.XOR<Prisma.PalletUpdateManyMutationInput, Prisma.PalletUncheckedUpdateManyWithoutLayerInput>
+}
+
+export type PalletScalarWhereInput = {
+  AND?: Prisma.PalletScalarWhereInput | Prisma.PalletScalarWhereInput[]
+  OR?: Prisma.PalletScalarWhereInput[]
+  NOT?: Prisma.PalletScalarWhereInput | Prisma.PalletScalarWhereInput[]
+  id?: Prisma.StringFilter<"Pallet"> | string
+  label?: Prisma.StringFilter<"Pallet"> | string
+  description?: Prisma.StringFilter<"Pallet"> | string
+  taskId?: Prisma.StringFilter<"Pallet"> | string
+  palletCode?: Prisma.StringFilter<"Pallet"> | string
+  beginCell?: Prisma.StringFilter<"Pallet"> | string
+  endStation?: Prisma.StringFilter<"Pallet"> | string
+  layerId?: Prisma.StringFilter<"Pallet"> | string
+}
+
+export type PalletCreateManyLayerInput = {
+  id?: string
+  label: string
+  description: string
+  taskId: string
+  palletCode: string
+  beginCell: string
+  endStation: string
+}
+
+export type PalletUpdateWithoutLayerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string
+  palletCode?: Prisma.StringFieldUpdateOperationsInput | string
+  beginCell?: Prisma.StringFieldUpdateOperationsInput | string
+  endStation?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type PalletUncheckedUpdateWithoutLayerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string
+  palletCode?: Prisma.StringFieldUpdateOperationsInput | string
+  beginCell?: Prisma.StringFieldUpdateOperationsInput | string
+  endStation?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type PalletUncheckedUpdateManyWithoutLayerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string
+  palletCode?: Prisma.StringFieldUpdateOperationsInput | string
+  beginCell?: Prisma.StringFieldUpdateOperationsInput | string
+  endStation?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -386,6 +539,7 @@ export type PalletSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   beginCell?: boolean
   endStation?: boolean
   layerId?: boolean
+  layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pallet"]>
 
 export type PalletSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -397,6 +551,7 @@ export type PalletSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   beginCell?: boolean
   endStation?: boolean
   layerId?: boolean
+  layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pallet"]>
 
 export type PalletSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -408,6 +563,7 @@ export type PalletSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   beginCell?: boolean
   endStation?: boolean
   layerId?: boolean
+  layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pallet"]>
 
 export type PalletSelectScalar = {
@@ -422,10 +578,21 @@ export type PalletSelectScalar = {
 }
 
 export type PalletOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "description" | "taskId" | "palletCode" | "beginCell" | "endStation" | "layerId", ExtArgs["result"]["pallet"]>
+export type PalletInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
+}
+export type PalletIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
+}
+export type PalletIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
+}
 
 export type $PalletPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pallet"
-  objects: {}
+  objects: {
+    layer: Prisma.$LayerPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     label: string
@@ -829,6 +996,7 @@ readonly fields: PalletFieldRefs;
  */
 export interface Prisma__PalletClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  layer<T extends Prisma.LayerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LayerDefaultArgs<ExtArgs>>): Prisma.Prisma__LayerClient<runtime.Types.Result.GetResult<Prisma.$LayerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -883,6 +1051,10 @@ export type PalletFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
+  /**
    * Filter, which Pallet to fetch.
    */
   where: Prisma.PalletWhereUniqueInput
@@ -901,6 +1073,10 @@ export type PalletFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
+  /**
    * Filter, which Pallet to fetch.
    */
   where: Prisma.PalletWhereUniqueInput
@@ -918,6 +1094,10 @@ export type PalletFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Pallet
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
   /**
    * Filter, which Pallet to fetch.
    */
@@ -967,6 +1147,10 @@ export type PalletFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
+  /**
    * Filter, which Pallet to fetch.
    */
   where?: Prisma.PalletWhereInput
@@ -1014,6 +1198,10 @@ export type PalletFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Pallet
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
   /**
    * Filter, which Pallets to fetch.
    */
@@ -1063,6 +1251,10 @@ export type PalletCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
+  /**
    * The data needed to create a Pallet.
    */
   data: Prisma.XOR<Prisma.PalletCreateInput, Prisma.PalletUncheckedCreateInput>
@@ -1094,6 +1286,10 @@ export type PalletCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * The data used to create many Pallets.
    */
   data: Prisma.PalletCreateManyInput | Prisma.PalletCreateManyInput[]
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1108,6 +1304,10 @@ export type PalletUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Pallet
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
   /**
    * The data needed to update a Pallet.
    */
@@ -1160,6 +1360,10 @@ export type PalletUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Pallets to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1174,6 +1378,10 @@ export type PalletUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Pallet
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
   /**
    * The filter to search for the Pallet to update in case it exists.
    */
@@ -1200,6 +1408,10 @@ export type PalletDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Pallet
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
   /**
    * Filter which Pallet to delete.
    */
@@ -1232,4 +1444,8 @@ export type PalletDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Pallet
    */
   omit?: Prisma.PalletOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
 }

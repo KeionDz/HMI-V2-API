@@ -22,6 +22,7 @@ model Pallet {
   beginCell   String
   endStation  String
   layerId     String
+  layer       Layer  @relation(fields: [layerId], references: [id])
 }
 
 model Layer {
@@ -29,6 +30,7 @@ model Layer {
   name                       String
   NumberOfPalletsAccomodated String
   active                     Boolean
+  pallets                    Pallet[]
 }
 
 model User {

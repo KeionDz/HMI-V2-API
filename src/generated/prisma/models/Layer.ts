@@ -174,6 +174,7 @@ export type LayerWhereInput = {
   name?: Prisma.StringFilter<"Layer"> | string
   NumberOfPalletsAccomodated?: Prisma.StringFilter<"Layer"> | string
   active?: Prisma.BoolFilter<"Layer"> | boolean
+  pallets?: Prisma.PalletListRelationFilter
 }
 
 export type LayerOrderByWithRelationInput = {
@@ -181,6 +182,7 @@ export type LayerOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   NumberOfPalletsAccomodated?: Prisma.SortOrder
   active?: Prisma.SortOrder
+  pallets?: Prisma.PalletOrderByRelationAggregateInput
 }
 
 export type LayerWhereUniqueInput = Prisma.AtLeast<{
@@ -191,6 +193,7 @@ export type LayerWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Layer"> | string
   NumberOfPalletsAccomodated?: Prisma.StringFilter<"Layer"> | string
   active?: Prisma.BoolFilter<"Layer"> | boolean
+  pallets?: Prisma.PalletListRelationFilter
 }, "id">
 
 export type LayerOrderByWithAggregationInput = {
@@ -218,6 +221,7 @@ export type LayerCreateInput = {
   name: string
   NumberOfPalletsAccomodated: string
   active: boolean
+  pallets?: Prisma.PalletCreateNestedManyWithoutLayerInput
 }
 
 export type LayerUncheckedCreateInput = {
@@ -225,6 +229,7 @@ export type LayerUncheckedCreateInput = {
   name: string
   NumberOfPalletsAccomodated: string
   active: boolean
+  pallets?: Prisma.PalletUncheckedCreateNestedManyWithoutLayerInput
 }
 
 export type LayerUpdateInput = {
@@ -232,6 +237,7 @@ export type LayerUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   NumberOfPalletsAccomodated?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pallets?: Prisma.PalletUpdateManyWithoutLayerNestedInput
 }
 
 export type LayerUncheckedUpdateInput = {
@@ -239,6 +245,7 @@ export type LayerUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   NumberOfPalletsAccomodated?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pallets?: Prisma.PalletUncheckedUpdateManyWithoutLayerNestedInput
 }
 
 export type LayerCreateManyInput = {
@@ -262,6 +269,11 @@ export type LayerUncheckedUpdateManyInput = {
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
+export type LayerScalarRelationFilter = {
+  is?: Prisma.LayerWhereInput
+  isNot?: Prisma.LayerWhereInput
+}
+
 export type LayerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
@@ -283,10 +295,97 @@ export type LayerMinOrderByAggregateInput = {
   active?: Prisma.SortOrder
 }
 
+export type LayerCreateNestedOneWithoutPalletsInput = {
+  create?: Prisma.XOR<Prisma.LayerCreateWithoutPalletsInput, Prisma.LayerUncheckedCreateWithoutPalletsInput>
+  connectOrCreate?: Prisma.LayerCreateOrConnectWithoutPalletsInput
+  connect?: Prisma.LayerWhereUniqueInput
+}
+
+export type LayerUpdateOneRequiredWithoutPalletsNestedInput = {
+  create?: Prisma.XOR<Prisma.LayerCreateWithoutPalletsInput, Prisma.LayerUncheckedCreateWithoutPalletsInput>
+  connectOrCreate?: Prisma.LayerCreateOrConnectWithoutPalletsInput
+  upsert?: Prisma.LayerUpsertWithoutPalletsInput
+  connect?: Prisma.LayerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LayerUpdateToOneWithWhereWithoutPalletsInput, Prisma.LayerUpdateWithoutPalletsInput>, Prisma.LayerUncheckedUpdateWithoutPalletsInput>
+}
+
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type LayerCreateWithoutPalletsInput = {
+  id?: string
+  name: string
+  NumberOfPalletsAccomodated: string
+  active: boolean
+}
+
+export type LayerUncheckedCreateWithoutPalletsInput = {
+  id?: string
+  name: string
+  NumberOfPalletsAccomodated: string
+  active: boolean
+}
+
+export type LayerCreateOrConnectWithoutPalletsInput = {
+  where: Prisma.LayerWhereUniqueInput
+  create: Prisma.XOR<Prisma.LayerCreateWithoutPalletsInput, Prisma.LayerUncheckedCreateWithoutPalletsInput>
+}
+
+export type LayerUpsertWithoutPalletsInput = {
+  update: Prisma.XOR<Prisma.LayerUpdateWithoutPalletsInput, Prisma.LayerUncheckedUpdateWithoutPalletsInput>
+  create: Prisma.XOR<Prisma.LayerCreateWithoutPalletsInput, Prisma.LayerUncheckedCreateWithoutPalletsInput>
+  where?: Prisma.LayerWhereInput
+}
+
+export type LayerUpdateToOneWithWhereWithoutPalletsInput = {
+  where?: Prisma.LayerWhereInput
+  data: Prisma.XOR<Prisma.LayerUpdateWithoutPalletsInput, Prisma.LayerUncheckedUpdateWithoutPalletsInput>
+}
+
+export type LayerUpdateWithoutPalletsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  NumberOfPalletsAccomodated?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type LayerUncheckedUpdateWithoutPalletsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  NumberOfPalletsAccomodated?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+
+/**
+ * Count Type LayerCountOutputType
+ */
+
+export type LayerCountOutputType = {
+  pallets: number
+}
+
+export type LayerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  pallets?: boolean | LayerCountOutputTypeCountPalletsArgs
+}
+
+/**
+ * LayerCountOutputType without action
+ */
+export type LayerCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LayerCountOutputType
+   */
+  select?: Prisma.LayerCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * LayerCountOutputType without action
+ */
+export type LayerCountOutputTypeCountPalletsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PalletWhereInput
+}
 
 
 export type LayerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -294,6 +393,8 @@ export type LayerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   name?: boolean
   NumberOfPalletsAccomodated?: boolean
   active?: boolean
+  pallets?: boolean | Prisma.Layer$palletsArgs<ExtArgs>
+  _count?: boolean | Prisma.LayerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["layer"]>
 
 export type LayerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -318,10 +419,18 @@ export type LayerSelectScalar = {
 }
 
 export type LayerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "NumberOfPalletsAccomodated" | "active", ExtArgs["result"]["layer"]>
+export type LayerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  pallets?: boolean | Prisma.Layer$palletsArgs<ExtArgs>
+  _count?: boolean | Prisma.LayerCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type LayerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type LayerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $LayerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Layer"
-  objects: {}
+  objects: {
+    pallets: Prisma.$PalletPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
@@ -721,6 +830,7 @@ readonly fields: LayerFieldRefs;
  */
 export interface Prisma__LayerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  pallets<T extends Prisma.Layer$palletsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Layer$palletsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PalletPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -771,6 +881,10 @@ export type LayerFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Interna
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
+  /**
    * Filter, which Layer to fetch.
    */
   where: Prisma.LayerWhereUniqueInput
@@ -789,6 +903,10 @@ export type LayerFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
+  /**
    * Filter, which Layer to fetch.
    */
   where: Prisma.LayerWhereUniqueInput
@@ -806,6 +924,10 @@ export type LayerFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Layer
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
   /**
    * Filter, which Layer to fetch.
    */
@@ -855,6 +977,10 @@ export type LayerFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
+  /**
    * Filter, which Layer to fetch.
    */
   where?: Prisma.LayerWhereInput
@@ -902,6 +1028,10 @@ export type LayerFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Layer
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
   /**
    * Filter, which Layers to fetch.
    */
@@ -951,6 +1081,10 @@ export type LayerCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
+  /**
    * The data needed to create a Layer.
    */
   data: Prisma.XOR<Prisma.LayerCreateInput, Prisma.LayerUncheckedCreateInput>
@@ -996,6 +1130,10 @@ export type LayerUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Layer
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
   /**
    * The data needed to update a Layer.
    */
@@ -1063,6 +1201,10 @@ export type LayerUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
+  /**
    * The filter to search for the Layer to update in case it exists.
    */
   where: Prisma.LayerWhereUniqueInput
@@ -1089,6 +1231,10 @@ export type LayerDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
+  /**
    * Filter which Layer to delete.
    */
   where: Prisma.LayerWhereUniqueInput
@@ -1109,6 +1255,30 @@ export type LayerDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Layer.pallets
+ */
+export type Layer$palletsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pallet
+   */
+  select?: Prisma.PalletSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pallet
+   */
+  omit?: Prisma.PalletOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PalletInclude<ExtArgs> | null
+  where?: Prisma.PalletWhereInput
+  orderBy?: Prisma.PalletOrderByWithRelationInput | Prisma.PalletOrderByWithRelationInput[]
+  cursor?: Prisma.PalletWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PalletScalarFieldEnum | Prisma.PalletScalarFieldEnum[]
+}
+
+/**
  * Layer without action
  */
 export type LayerDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1120,4 +1290,8 @@ export type LayerDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Layer
    */
   omit?: Prisma.LayerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LayerInclude<ExtArgs> | null
 }
