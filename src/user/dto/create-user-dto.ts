@@ -1,9 +1,13 @@
-import { IsString } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 import { Roles } from 'src/generated/prisma/enums';
 
 export class CreateUserDto {
   @IsString()
-  username!: string;
+  name!: string;
+
+  @IsEmail()
+  email!: string;
+
   @IsString()
   password!: string;
 

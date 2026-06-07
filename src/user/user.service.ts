@@ -8,18 +8,20 @@ export class UserService {
 
   async createUser(createUserDto: CreateUserDto) {
     if (
-      !createUserDto.username ||
+      !createUserDto.name ||
+      !createUserDto.email ||
       !createUserDto.password ||
       !createUserDto.role
     ) {
       throw new BadRequestException('Missing required fields');
     }
 
-    const { username, password, role } = createUserDto;
+    const { name, email, password, role } = createUserDto;
 
     const newUser = await this.prismaService.user.create({
       data: {
-        username,
+        name,
+        email,
         password,
         role,
       },

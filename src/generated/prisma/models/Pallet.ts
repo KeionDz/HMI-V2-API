@@ -456,6 +456,7 @@ export type PalletCreateOrConnectWithoutLayerInput = {
 
 export type PalletCreateManyLayerInputEnvelope = {
   data: Prisma.PalletCreateManyLayerInput | Prisma.PalletCreateManyLayerInput[]
+  skipDuplicates?: boolean
 }
 
 export type PalletUpsertWithWhereUniqueWithoutLayerInput = {
@@ -1268,6 +1269,7 @@ export type PalletCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * The data used to create many Pallets.
    */
   data: Prisma.PalletCreateManyInput | Prisma.PalletCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1286,6 +1288,7 @@ export type PalletCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * The data used to create many Pallets.
    */
   data: Prisma.PalletCreateManyInput | Prisma.PalletCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
