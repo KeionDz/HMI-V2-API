@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Pallet: 'Pallet',
   Layer: 'Layer',
-  User: 'User'
+  User: 'User',
+  Camera: 'Camera'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "pallet" | "layer" | "user"
+    modelProps: "pallet" | "layer" | "user" | "camera"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Camera: {
+      payload: Prisma.$CameraPayload<ExtArgs>
+      fields: Prisma.CameraFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CameraFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CameraFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>
+        }
+        findFirst: {
+          args: Prisma.CameraFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CameraFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>
+        }
+        findMany: {
+          args: Prisma.CameraFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>[]
+        }
+        create: {
+          args: Prisma.CameraCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>
+        }
+        createMany: {
+          args: Prisma.CameraCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CameraCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>[]
+        }
+        delete: {
+          args: Prisma.CameraDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>
+        }
+        update: {
+          args: Prisma.CameraUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>
+        }
+        deleteMany: {
+          args: Prisma.CameraDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CameraUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CameraUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>[]
+        }
+        upsert: {
+          args: Prisma.CameraUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CameraPayload>
+        }
+        aggregate: {
+          args: Prisma.CameraAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCamera>
+        }
+        groupBy: {
+          args: Prisma.CameraGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CameraGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CameraCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CameraCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -658,6 +733,9 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
  */
 
 export const TransactionIsolationLevel = runtime.makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 } as const)
 
@@ -699,12 +777,31 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const CameraScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url',
+  palletId: 'palletId',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CameraScalarFieldEnum = (typeof CameraScalarFieldEnum)[keyof typeof CameraScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
 
@@ -717,6 +814,13 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
  * Reference to a field of type 'String'
  */
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+/**
+ * Reference to a field of type 'String[]'
+ */
+export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -735,9 +839,37 @@ export type EnumRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
 
 
 /**
+ * Reference to a field of type 'Roles[]'
+ */
+export type ListEnumRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Roles[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 /**
@@ -853,6 +985,7 @@ export type GlobalOmitConfig = {
   pallet?: Prisma.PalletOmit
   layer?: Prisma.LayerOmit
   user?: Prisma.UserOmit
+  camera?: Prisma.CameraOmit
 }
 
 /* Types for Logging */
