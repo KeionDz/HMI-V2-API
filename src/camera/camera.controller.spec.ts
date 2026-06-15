@@ -1,14 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CameraController } from './camera.controller';
 import { CameraService } from './camera.service';
+import { JwtCookieGuard } from '../auth/guard/jwt-cookie.guard';
+import { RoleGuard } from '../auth/guard/role.guard';
 
 describe('CameraController', () => {
   let controller: CameraController;
-  let cameraService: { addCamera: jest.Mock };
+  let cameraService: { addCamera: jest.Mock; getCamera: jest.Mock };
 
   beforeEach(async () => {
     cameraService = {
       addCamera: jest.fn(),
+      getCamera: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -19,7 +22,12 @@ describe('CameraController', () => {
           useValue: cameraService,
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(JwtCookieGuard)
+      .useValue({ canActivate: jest.fn(() => true) })
+      .overrideGuard(RoleGuard)
+      .useValue({ canActivate: jest.fn(() => true) })
+      .compile();
 
     controller = module.get<CameraController>(CameraController);
   });
@@ -32,6 +40,7 @@ describe('CameraController', () => {
     const addCameraDto = {
       name: 'Dock camera',
       url: 'rtsp://localhost/camera',
+      palletId: 'pallet-1',
     };
 
     cameraService.addCamera.mockResolvedValue(addCameraDto);
@@ -40,5 +49,21 @@ describe('CameraController', () => {
       addCameraDto,
     );
     expect(cameraService.addCamera).toHaveBeenCalledWith(addCameraDto);
+  });
+
+  it('should get cameras through the service', async () => {
+    const cameras = [
+      {
+        id: 'camera-1',
+        name: 'Dock camera',
+        url: 'rtsp://localhost/camera',
+        palletId: 'pallet-1',
+      },
+    ];
+
+    cameraService.getCamera.mockResolvedValue(cameras);
+
+    await expect(controller.getCamera()).resolves.toEqual(cameras);
+    expect(cameraService.getCamera).toHaveBeenCalled();
   });
 });

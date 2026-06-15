@@ -53,7 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Pallet: 'Pallet',
   Layer: 'Layer',
-  User: 'User'
+  User: 'User',
+  Camera: 'Camera'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -105,6 +106,17 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const CameraScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url',
+  palletId: 'palletId',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CameraScalarFieldEnum = (typeof CameraScalarFieldEnum)[keyof typeof CameraScalarFieldEnum]
 
 
 export const SortOrder = {

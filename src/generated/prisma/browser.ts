@@ -32,3 +32,8 @@ export type Layer = Prisma.LayerModel
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Camera
+ * 
+ */
+export type Camera = Prisma.CameraModel

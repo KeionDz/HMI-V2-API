@@ -206,6 +206,7 @@ export type PalletWhereInput = {
   beginCell?: Prisma.StringFilter<"Pallet"> | string
   endStation?: Prisma.StringFilter<"Pallet"> | string
   layerId?: Prisma.StringFilter<"Pallet"> | string
+  cameras?: Prisma.CameraListRelationFilter
   layer?: Prisma.XOR<Prisma.LayerScalarRelationFilter, Prisma.LayerWhereInput>
 }
 
@@ -218,6 +219,7 @@ export type PalletOrderByWithRelationInput = {
   beginCell?: Prisma.SortOrder
   endStation?: Prisma.SortOrder
   layerId?: Prisma.SortOrder
+  cameras?: Prisma.CameraOrderByRelationAggregateInput
   layer?: Prisma.LayerOrderByWithRelationInput
 }
 
@@ -233,6 +235,7 @@ export type PalletWhereUniqueInput = Prisma.AtLeast<{
   beginCell?: Prisma.StringFilter<"Pallet"> | string
   endStation?: Prisma.StringFilter<"Pallet"> | string
   layerId?: Prisma.StringFilter<"Pallet"> | string
+  cameras?: Prisma.CameraListRelationFilter
   layer?: Prisma.XOR<Prisma.LayerScalarRelationFilter, Prisma.LayerWhereInput>
 }, "id">
 
@@ -272,6 +275,7 @@ export type PalletCreateInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  cameras?: Prisma.CameraCreateNestedManyWithoutPalletInput
   layer: Prisma.LayerCreateNestedOneWithoutPalletsInput
 }
 
@@ -284,6 +288,7 @@ export type PalletUncheckedCreateInput = {
   beginCell: string
   endStation: string
   layerId: string
+  cameras?: Prisma.CameraUncheckedCreateNestedManyWithoutPalletInput
 }
 
 export type PalletUpdateInput = {
@@ -294,6 +299,7 @@ export type PalletUpdateInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  cameras?: Prisma.CameraUpdateManyWithoutPalletNestedInput
   layer?: Prisma.LayerUpdateOneRequiredWithoutPalletsNestedInput
 }
 
@@ -306,6 +312,7 @@ export type PalletUncheckedUpdateInput = {
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
   layerId?: Prisma.StringFieldUpdateOperationsInput | string
+  cameras?: Prisma.CameraUncheckedUpdateManyWithoutPalletNestedInput
 }
 
 export type PalletCreateManyInput = {
@@ -383,6 +390,11 @@ export type PalletOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type PalletScalarRelationFilter = {
+  is?: Prisma.PalletWhereInput
+  isNot?: Prisma.PalletWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -429,6 +441,20 @@ export type PalletUncheckedUpdateManyWithoutLayerNestedInput = {
   deleteMany?: Prisma.PalletScalarWhereInput | Prisma.PalletScalarWhereInput[]
 }
 
+export type PalletCreateNestedOneWithoutCamerasInput = {
+  create?: Prisma.XOR<Prisma.PalletCreateWithoutCamerasInput, Prisma.PalletUncheckedCreateWithoutCamerasInput>
+  connectOrCreate?: Prisma.PalletCreateOrConnectWithoutCamerasInput
+  connect?: Prisma.PalletWhereUniqueInput
+}
+
+export type PalletUpdateOneRequiredWithoutCamerasNestedInput = {
+  create?: Prisma.XOR<Prisma.PalletCreateWithoutCamerasInput, Prisma.PalletUncheckedCreateWithoutCamerasInput>
+  connectOrCreate?: Prisma.PalletCreateOrConnectWithoutCamerasInput
+  upsert?: Prisma.PalletUpsertWithoutCamerasInput
+  connect?: Prisma.PalletWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PalletUpdateToOneWithWhereWithoutCamerasInput, Prisma.PalletUpdateWithoutCamerasInput>, Prisma.PalletUncheckedUpdateWithoutCamerasInput>
+}
+
 export type PalletCreateWithoutLayerInput = {
   id?: string
   label: string
@@ -437,6 +463,7 @@ export type PalletCreateWithoutLayerInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  cameras?: Prisma.CameraCreateNestedManyWithoutPalletInput
 }
 
 export type PalletUncheckedCreateWithoutLayerInput = {
@@ -447,6 +474,7 @@ export type PalletUncheckedCreateWithoutLayerInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  cameras?: Prisma.CameraUncheckedCreateNestedManyWithoutPalletInput
 }
 
 export type PalletCreateOrConnectWithoutLayerInput = {
@@ -489,6 +517,66 @@ export type PalletScalarWhereInput = {
   layerId?: Prisma.StringFilter<"Pallet"> | string
 }
 
+export type PalletCreateWithoutCamerasInput = {
+  id?: string
+  label: string
+  description: string
+  taskId: string
+  palletCode: string
+  beginCell: string
+  endStation: string
+  layer: Prisma.LayerCreateNestedOneWithoutPalletsInput
+}
+
+export type PalletUncheckedCreateWithoutCamerasInput = {
+  id?: string
+  label: string
+  description: string
+  taskId: string
+  palletCode: string
+  beginCell: string
+  endStation: string
+  layerId: string
+}
+
+export type PalletCreateOrConnectWithoutCamerasInput = {
+  where: Prisma.PalletWhereUniqueInput
+  create: Prisma.XOR<Prisma.PalletCreateWithoutCamerasInput, Prisma.PalletUncheckedCreateWithoutCamerasInput>
+}
+
+export type PalletUpsertWithoutCamerasInput = {
+  update: Prisma.XOR<Prisma.PalletUpdateWithoutCamerasInput, Prisma.PalletUncheckedUpdateWithoutCamerasInput>
+  create: Prisma.XOR<Prisma.PalletCreateWithoutCamerasInput, Prisma.PalletUncheckedCreateWithoutCamerasInput>
+  where?: Prisma.PalletWhereInput
+}
+
+export type PalletUpdateToOneWithWhereWithoutCamerasInput = {
+  where?: Prisma.PalletWhereInput
+  data: Prisma.XOR<Prisma.PalletUpdateWithoutCamerasInput, Prisma.PalletUncheckedUpdateWithoutCamerasInput>
+}
+
+export type PalletUpdateWithoutCamerasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string
+  palletCode?: Prisma.StringFieldUpdateOperationsInput | string
+  beginCell?: Prisma.StringFieldUpdateOperationsInput | string
+  endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  layer?: Prisma.LayerUpdateOneRequiredWithoutPalletsNestedInput
+}
+
+export type PalletUncheckedUpdateWithoutCamerasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  taskId?: Prisma.StringFieldUpdateOperationsInput | string
+  palletCode?: Prisma.StringFieldUpdateOperationsInput | string
+  beginCell?: Prisma.StringFieldUpdateOperationsInput | string
+  endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  layerId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
 export type PalletCreateManyLayerInput = {
   id?: string
   label: string
@@ -507,6 +595,7 @@ export type PalletUpdateWithoutLayerInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  cameras?: Prisma.CameraUpdateManyWithoutPalletNestedInput
 }
 
 export type PalletUncheckedUpdateWithoutLayerInput = {
@@ -517,6 +606,7 @@ export type PalletUncheckedUpdateWithoutLayerInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  cameras?: Prisma.CameraUncheckedUpdateManyWithoutPalletNestedInput
 }
 
 export type PalletUncheckedUpdateManyWithoutLayerInput = {
@@ -530,6 +620,35 @@ export type PalletUncheckedUpdateManyWithoutLayerInput = {
 }
 
 
+/**
+ * Count Type PalletCountOutputType
+ */
+
+export type PalletCountOutputType = {
+  cameras: number
+}
+
+export type PalletCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cameras?: boolean | PalletCountOutputTypeCountCamerasArgs
+}
+
+/**
+ * PalletCountOutputType without action
+ */
+export type PalletCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PalletCountOutputType
+   */
+  select?: Prisma.PalletCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * PalletCountOutputType without action
+ */
+export type PalletCountOutputTypeCountCamerasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CameraWhereInput
+}
+
 
 export type PalletSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -540,7 +659,9 @@ export type PalletSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   beginCell?: boolean
   endStation?: boolean
   layerId?: boolean
+  cameras?: boolean | Prisma.Pallet$camerasArgs<ExtArgs>
   layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.PalletCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pallet"]>
 
 export type PalletSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -580,7 +701,9 @@ export type PalletSelectScalar = {
 
 export type PalletOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "description" | "taskId" | "palletCode" | "beginCell" | "endStation" | "layerId", ExtArgs["result"]["pallet"]>
 export type PalletInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cameras?: boolean | Prisma.Pallet$camerasArgs<ExtArgs>
   layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.PalletCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PalletIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
@@ -592,6 +715,7 @@ export type PalletIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $PalletPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Pallet"
   objects: {
+    cameras: Prisma.$CameraPayload<ExtArgs>[]
     layer: Prisma.$LayerPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -997,6 +1121,7 @@ readonly fields: PalletFieldRefs;
  */
 export interface Prisma__PalletClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  cameras<T extends Prisma.Pallet$camerasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pallet$camerasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CameraPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   layer<T extends Prisma.LayerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LayerDefaultArgs<ExtArgs>>): Prisma.Prisma__LayerClient<runtime.Types.Result.GetResult<Prisma.$LayerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1433,6 +1558,30 @@ export type PalletDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Pallets to delete.
    */
   limit?: number
+}
+
+/**
+ * Pallet.cameras
+ */
+export type Pallet$camerasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Camera
+   */
+  select?: Prisma.CameraSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Camera
+   */
+  omit?: Prisma.CameraOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CameraInclude<ExtArgs> | null
+  where?: Prisma.CameraWhereInput
+  orderBy?: Prisma.CameraOrderByWithRelationInput | Prisma.CameraOrderByWithRelationInput[]
+  cursor?: Prisma.CameraWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CameraScalarFieldEnum | Prisma.CameraScalarFieldEnum[]
 }
 
 /**

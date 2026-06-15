@@ -6,4 +6,7 @@ export class AddCameraDto {
 
   @IsString()
   url!: string;
+
+  @IsString()
+  palletId!: string;
 }

@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Pallet {
-  id          String @id @default(cuid())
+  id          String   @id @default(cuid())
   label       String
   description String
   taskId      String
@@ -22,11 +22,12 @@ model Pallet {
   beginCell   String
   endStation  String
   layerId     String
-  layer       Layer  @relation(fields: [layerId], references: [id])
+  cameras     Camera[]
+  layer       Layer    @relation(fields: [layerId], references: [id])
 }
 
 model Layer {
-  id                         String  @id @default(cuid())
+  id                         String   @id @default(cuid())
   name                       String
   NumberOfPalletsAccomodated String
   active                     Boolean
@@ -39,6 +40,17 @@ model User {
   email    String @unique
   password String
   role     Roles  @default(USER)
+}
+
+model Camera {
+  id   String @id @default(cuid())
+  name String
+  url  String
+
+  palletId String
+  pallet   Pallet @relation(fields: [palletId], references: [id])
+
+  updatedAt DateTime @updatedAt
 }
 
 enum Roles {
