@@ -32,8 +32,11 @@ export class CameraService {
     });
   }
 
-  async getCamera() {
+  async getAllCamera(id: string) {
     return this.prisma.camera.findMany({
+      where: {
+        id,
+      },
       include: {
         pallet: true,
       },

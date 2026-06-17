@@ -1,12 +1,12 @@
-import { IsString } from "class-validator";
+import { IsString } from 'class-validator';
 
 export class CreateLayerDto {
-    @IsString()
-    name!: string;
-    
-    @IsString()
-    NumberOfPalletsAccomodated!: string;
+  @IsString()
+  name!: string;
 
-    @IsString()
-    active!: boolean;
+  @IsString()
+  numberOfPalletsAccomodated!: string;
+
+  @IsString()
+  active!: boolean;
 }

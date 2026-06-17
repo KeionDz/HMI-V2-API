@@ -73,4 +73,15 @@ export class AuthService {
       user: safeUser,
     };
   }
+
+  async logout(userId: string) {
+    const updatedUser = await this.prisma.user.update({
+      where: { id: userId },
+      data: { lastLogin: new Date() },
+    });
+
+    return {
+      message: 'Logout successful',
+    };
+  }
 }

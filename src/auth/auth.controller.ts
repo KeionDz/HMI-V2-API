@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { SignUpDto } from './dto/sign-up.dto';
 
-@Controller('auth')
+@Controller({ path: 'auth', version: '1' })
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -31,5 +31,15 @@ export class AuthController {
       message: 'Login successful',
       user,
     };
+  }
+
+  @Post('logout')
+  async logout(
+    @Res({ passthrough: true }) response: Response,
+    @Body() userId: { id: string },
+  ) {
+    response.clearCookie('access_token');
+    await this.authService.logout(userId.id);
+    return { message: 'Logout successful' };
   }
 }

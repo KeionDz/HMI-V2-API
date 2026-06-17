@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreatePalletDto } from './dto/create-pallet';
 
@@ -22,5 +22,30 @@ export class PalletService {
     });
   }
 
+  async getAllPallets() {
+    return this.prisma.pallet.findMany({
+      include: {
+        layer: true,
+        cameras: true,
+      },
+    });
+  }
 
+  async getPalletById(id: string) {
+    const pallet = await this.prisma.pallet.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        layer: true,
+        cameras: true,
+      },
+    });
+
+    if (!pallet) {
+      throw new NotFoundException('Pallet not found');
+    }
+
+    return pallet;
+  }
 }

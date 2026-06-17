@@ -6,12 +6,12 @@ import { RoleGuard } from '../auth/guard/role.guard';
 
 describe('CameraController', () => {
   let controller: CameraController;
-  let cameraService: { addCamera: jest.Mock; getCamera: jest.Mock };
+  let cameraService: { addCamera: jest.Mock; getAllCamera: jest.Mock };
 
   beforeEach(async () => {
     cameraService = {
       addCamera: jest.fn(),
-      getCamera: jest.fn(),
+      getAllCamera: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -61,9 +61,9 @@ describe('CameraController', () => {
       },
     ];
 
-    cameraService.getCamera.mockResolvedValue(cameras);
+    cameraService.getAllCamera.mockResolvedValue(cameras);
 
-    await expect(controller.getCamera()).resolves.toEqual(cameras);
-    expect(cameraService.getCamera).toHaveBeenCalled();
+    await expect(controller.getCamera('camera-1')).resolves.toEqual(cameras);
+    expect(cameraService.getAllCamera).toHaveBeenCalledWith('camera-1');
   });
 });

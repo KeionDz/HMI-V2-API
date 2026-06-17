@@ -35,11 +35,12 @@ model Layer {
 }
 
 model User {
-  id       String @id @default(cuid())
-  name     String
-  email    String @unique
-  password String
-  role     Roles  @default(USER)
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String
+  lastLogin DateTime?
+  role      Roles     @default(USER)
 }
 
 model Camera {

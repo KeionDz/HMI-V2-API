@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AddCameraDto } from './dto/add-camera-dto';
 import { CameraService } from './camera.service';
 import { JwtCookieGuard } from '../auth/guard/jwt-cookie.guard';
 import { RoleGuard } from '../auth/guard/role.guard';
 import { Roles } from '../auth/roles.decorator';
 
-@Controller('camera')
+@Controller({ path: 'camera', version: '1' })
 export class CameraController {
   constructor(private cameraService: CameraService) {}
 
@@ -16,8 +16,8 @@ export class CameraController {
     return this.cameraService.addCamera(addCameraDto);
   }
 
-  @Get()
-  async getCamera() {
-    return this.cameraService.getCamera();
+  @Get(':id')
+  async getCamera(@Param('id') id: string) {
+    return this.cameraService.getAllCamera(id);
   }
 }

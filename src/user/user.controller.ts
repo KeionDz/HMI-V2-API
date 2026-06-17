@@ -4,7 +4,7 @@ import { RoleGuard } from 'src/auth/guard/role.guard';
 import { JwtCookieGuard } from 'src/auth/guard/jwt-cookie.guard';
 import { CreateUserDto } from './dto/create-user-dto';
 
-@Controller('user')
+@Controller({ path: 'user', version: '1' })
 export class UserController {
   constructor(private userService: UserService) {}
 
