@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards } from '@nestjs/common';
+import { Controller, Post, UseGuards, Get, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RoleGuard } from 'src/auth/guard/role.guard';
 import { JwtCookieGuard } from 'src/auth/guard/jwt-cookie.guard';
@@ -12,5 +12,17 @@ export class UserController {
   @UseGuards(JwtCookieGuard, RoleGuard)
   async createUser(createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
+  }
+
+  @Get('all')
+  @UseGuards(JwtCookieGuard, RoleGuard)
+  async getAllUsers() {
+    return this.userService.getAllUsers();
+  }
+
+  @Get(':id')
+  @UseGuards(JwtCookieGuard, RoleGuard)
+  async getUserById(@Param('id') id: string) {
+    return this.userService.getUserById(id);
   }
 }

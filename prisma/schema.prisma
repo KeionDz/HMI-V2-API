@@ -21,6 +21,7 @@ model Pallet {
   palletCode  String
   beginCell   String
   endStation  String
+  isActive    Boolean
   layerId     String
   cameras     Camera[]
   layer       Layer    @relation(fields: [layerId], references: [id])

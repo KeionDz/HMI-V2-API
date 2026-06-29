@@ -34,4 +34,41 @@ export class UserService {
       data: cleanUser,
     };
   }
+
+  async getAllUsers() {
+    const users = await this.prismaService.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+      },
+    });
+
+    return {
+      message: 'Users retrieved successfully',
+      data: users,
+    };
+  }
+
+  async getUserById(id: string) {
+    const user = await this.prismaService.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+      },
+    });
+
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    return {
+      message: 'User retrieved successfully',
+      data: user,
+    };
+  }
 }
