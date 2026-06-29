@@ -54,14 +54,17 @@ describe('UserService', () => {
   it('should create a user and omit the password from the response', async () => {
     const createUserDto = {
       name: 'Hanzo',
-      email: 'hanzo@example.com',
-      password: 'secret',
+      username: 'hanzo',
+      password: 'secret123',
       role: Roles.USER,
     };
 
     prismaService.user.create.mockResolvedValue({
       id: 'user-id',
-      ...createUserDto,
+      name: createUserDto.name,
+      username: createUserDto.username,
+      password: 'hashed-password',
+      role: createUserDto.role,
     });
 
     await expect(service.createUser(createUserDto)).resolves.toEqual({
@@ -69,21 +72,29 @@ describe('UserService', () => {
       data: {
         id: 'user-id',
         name: 'Hanzo',
-        email: 'hanzo@example.com',
+        username: 'hanzo',
         role: Roles.USER,
       },
     });
-    expect(prismaService.user.create).toHaveBeenCalledWith({
-      data: createUserDto,
+    const createArgs = prismaService.user.create.mock.calls[0][0];
+    expect(createArgs).toEqual({
+      data: {
+        name: createUserDto.name,
+        username: createUserDto.username,
+        password: expect.any(String),
+        role: createUserDto.role,
+      },
     });
+    expect(createArgs.data.password).not.toBe(createUserDto.password);
+    expect(createArgs.data.password).toMatch(/^\$2[abxy]\$/);
   });
 
   it('should throw when required fields are missing', async () => {
     await expect(
       service.createUser({
         name: '',
-        email: 'hanzo@example.com',
-        password: 'secret',
+        username: 'hanzo',
+        password: 'secret123',
         role: Roles.USER,
       }),
     ).rejects.toBeInstanceOf(BadRequestException);

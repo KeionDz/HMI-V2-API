@@ -309,10 +309,6 @@ export type LayerUpdateOneRequiredWithoutPalletsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LayerUpdateToOneWithWhereWithoutPalletsInput, Prisma.LayerUpdateWithoutPalletsInput>, Prisma.LayerUncheckedUpdateWithoutPalletsInput>
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type LayerCreateWithoutPalletsInput = {
   id?: string
   name: string

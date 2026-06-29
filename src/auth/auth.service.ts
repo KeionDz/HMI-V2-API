@@ -18,11 +18,11 @@ export class AuthService {
 
   async signUp(signUpDto: SignUpDto) {
     const existingUser = await this.prisma.user.findUnique({
-      where: { email: signUpDto.email },
+      where: { username: signUpDto.username },
     });
 
     if (existingUser) {
-      throw new ConflictException('Email is already registered');
+      throw new ConflictException('Username is already registered');
     }
 
     const hashedPassword = await hash(signUpDto.password, 10);
@@ -30,42 +30,44 @@ export class AuthService {
     return this.prisma.user.create({
       data: {
         name: signUpDto.name,
-        email: signUpDto.email,
+        username: signUpDto.username,
         password: hashedPassword,
       },
       select: {
         id: true,
         name: true,
-        email: true,
+        username: true,
       },
     });
   }
 
   async login(loginDto: LoginDto) {
     const user = await this.prisma.user.findUnique({
-      where: { email: loginDto.email },
+      where: { username: loginDto.username },
     });
 
     if (!user) {
-      throw new UnauthorizedException('Invalid email or password');
+      throw new UnauthorizedException('Invalid username or password');
     }
 
     const passwordMatches = await compare(loginDto.password, user.password);
 
     if (!passwordMatches) {
-      throw new UnauthorizedException('Invalid email or password');
+      throw new UnauthorizedException('Invalid username or password');
     }
 
     const safeUser = {
       id: user.id,
       name: user.name,
-      email: user.email,
+      username: user.username,
+      role: user.role,
     };
 
     const accessToken = await this.jwtService.signAsync({
       sub: user.id,
-      email: user.email,
+      username: user.username,
       name: user.name,
+      role: user.role,
     });
 
     return {
@@ -75,7 +77,7 @@ export class AuthService {
   }
 
   async logout(userId: string) {
-    const updatedUser = await this.prisma.user.update({
+    await this.prisma.user.update({
       where: { id: userId },
       data: { lastLogin: new Date() },
     });

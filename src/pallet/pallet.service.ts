@@ -18,7 +18,10 @@ export class PalletService {
     }
 
     return this.prisma.pallet.create({
-      data: createPalletDto,
+      data: {
+        ...createPalletDto,
+        isActive: true,
+      },
     });
   }
 

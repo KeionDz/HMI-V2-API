@@ -9,7 +9,7 @@ import type { Request } from 'express';
 
 type JwtCookiePayload = {
   sub: string;
-  email: string;
+  username: string;
   name?: string;
   role?: string;
   roles?: string[];
@@ -18,7 +18,7 @@ type JwtCookiePayload = {
 type AuthenticatedRequest = Request & {
   user?: {
     id: string;
-    email: string;
+    username: string;
     name?: string;
     role?: string;
     roles?: string[];
@@ -42,7 +42,7 @@ export class JwtCookieGuard implements CanActivate {
 
       request.user = {
         id: payload.sub,
-        email: payload.email,
+        username: payload.username,
         name: payload.name,
         role: payload.role,
         roles: payload.roles,

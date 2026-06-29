@@ -81,6 +81,7 @@ export const PalletScalarFieldEnum = {
   palletCode: 'palletCode',
   beginCell: 'beginCell',
   endStation: 'endStation',
+  isActive: 'isActive',
   layerId: 'layerId'
 } as const
 
@@ -100,7 +101,7 @@ export type LayerScalarFieldEnum = (typeof LayerScalarFieldEnum)[keyof typeof La
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  email: 'email',
+  username: 'username',
   password: 'password',
   lastLogin: 'lastLogin',
   role: 'role'

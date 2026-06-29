@@ -74,7 +74,7 @@ describe('UserController', () => {
   it('should create a user through the service', async () => {
     const createUserDto = {
       name: 'Hanzo',
-      email: 'hanzo@example.com',
+      username: 'hanzo',
       password: 'secret',
       role: Roles.USER,
     };
@@ -83,7 +83,7 @@ describe('UserController', () => {
       data: {
         id: 'user-id',
         name: createUserDto.name,
-        email: createUserDto.email,
+        username: createUserDto.username,
         role: createUserDto.role,
       },
     };

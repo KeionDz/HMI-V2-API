@@ -1,4 +1,5 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
+import { hash } from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user-dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -9,20 +10,21 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto) {
     if (
       !createUserDto.name ||
-      !createUserDto.email ||
+      !createUserDto.username ||
       !createUserDto.password ||
       !createUserDto.role
     ) {
       throw new BadRequestException('Missing required fields');
     }
 
-    const { name, email, password, role } = createUserDto;
+    const { name, username, password, role } = createUserDto;
+    const hashedPassword = await hash(password, 10);
 
     const newUser = await this.prismaService.user.create({
       data: {
         name,
-        email,
-        password,
+        username,
+        password: hashedPassword,
         role,
       },
     });
@@ -40,7 +42,7 @@ export class UserService {
       select: {
         id: true,
         name: true,
-        email: true,
+        username: true,
         role: true,
       },
     });
@@ -57,7 +59,7 @@ export class UserService {
       select: {
         id: true,
         name: true,
-        email: true,
+        username: true,
         role: true,
       },
     });

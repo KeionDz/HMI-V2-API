@@ -32,6 +32,7 @@ export type PalletMinAggregateOutputType = {
   palletCode: string | null
   beginCell: string | null
   endStation: string | null
+  isActive: boolean | null
   layerId: string | null
 }
 
@@ -43,6 +44,7 @@ export type PalletMaxAggregateOutputType = {
   palletCode: string | null
   beginCell: string | null
   endStation: string | null
+  isActive: boolean | null
   layerId: string | null
 }
 
@@ -54,6 +56,7 @@ export type PalletCountAggregateOutputType = {
   palletCode: number
   beginCell: number
   endStation: number
+  isActive: number
   layerId: number
   _all: number
 }
@@ -67,6 +70,7 @@ export type PalletMinAggregateInputType = {
   palletCode?: true
   beginCell?: true
   endStation?: true
+  isActive?: true
   layerId?: true
 }
 
@@ -78,6 +82,7 @@ export type PalletMaxAggregateInputType = {
   palletCode?: true
   beginCell?: true
   endStation?: true
+  isActive?: true
   layerId?: true
 }
 
@@ -89,6 +94,7 @@ export type PalletCountAggregateInputType = {
   palletCode?: true
   beginCell?: true
   endStation?: true
+  isActive?: true
   layerId?: true
   _all?: true
 }
@@ -173,6 +179,7 @@ export type PalletGroupByOutputType = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   layerId: string
   _count: PalletCountAggregateOutputType | null
   _min: PalletMinAggregateOutputType | null
@@ -205,6 +212,7 @@ export type PalletWhereInput = {
   palletCode?: Prisma.StringFilter<"Pallet"> | string
   beginCell?: Prisma.StringFilter<"Pallet"> | string
   endStation?: Prisma.StringFilter<"Pallet"> | string
+  isActive?: Prisma.BoolFilter<"Pallet"> | boolean
   layerId?: Prisma.StringFilter<"Pallet"> | string
   cameras?: Prisma.CameraListRelationFilter
   layer?: Prisma.XOR<Prisma.LayerScalarRelationFilter, Prisma.LayerWhereInput>
@@ -218,6 +226,7 @@ export type PalletOrderByWithRelationInput = {
   palletCode?: Prisma.SortOrder
   beginCell?: Prisma.SortOrder
   endStation?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   layerId?: Prisma.SortOrder
   cameras?: Prisma.CameraOrderByRelationAggregateInput
   layer?: Prisma.LayerOrderByWithRelationInput
@@ -234,6 +243,7 @@ export type PalletWhereUniqueInput = Prisma.AtLeast<{
   palletCode?: Prisma.StringFilter<"Pallet"> | string
   beginCell?: Prisma.StringFilter<"Pallet"> | string
   endStation?: Prisma.StringFilter<"Pallet"> | string
+  isActive?: Prisma.BoolFilter<"Pallet"> | boolean
   layerId?: Prisma.StringFilter<"Pallet"> | string
   cameras?: Prisma.CameraListRelationFilter
   layer?: Prisma.XOR<Prisma.LayerScalarRelationFilter, Prisma.LayerWhereInput>
@@ -247,6 +257,7 @@ export type PalletOrderByWithAggregationInput = {
   palletCode?: Prisma.SortOrder
   beginCell?: Prisma.SortOrder
   endStation?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   layerId?: Prisma.SortOrder
   _count?: Prisma.PalletCountOrderByAggregateInput
   _max?: Prisma.PalletMaxOrderByAggregateInput
@@ -264,6 +275,7 @@ export type PalletScalarWhereWithAggregatesInput = {
   palletCode?: Prisma.StringWithAggregatesFilter<"Pallet"> | string
   beginCell?: Prisma.StringWithAggregatesFilter<"Pallet"> | string
   endStation?: Prisma.StringWithAggregatesFilter<"Pallet"> | string
+  isActive?: Prisma.BoolWithAggregatesFilter<"Pallet"> | boolean
   layerId?: Prisma.StringWithAggregatesFilter<"Pallet"> | string
 }
 
@@ -275,6 +287,7 @@ export type PalletCreateInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   cameras?: Prisma.CameraCreateNestedManyWithoutPalletInput
   layer: Prisma.LayerCreateNestedOneWithoutPalletsInput
 }
@@ -287,6 +300,7 @@ export type PalletUncheckedCreateInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   layerId: string
   cameras?: Prisma.CameraUncheckedCreateNestedManyWithoutPalletInput
 }
@@ -299,6 +313,7 @@ export type PalletUpdateInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cameras?: Prisma.CameraUpdateManyWithoutPalletNestedInput
   layer?: Prisma.LayerUpdateOneRequiredWithoutPalletsNestedInput
 }
@@ -311,6 +326,7 @@ export type PalletUncheckedUpdateInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   layerId?: Prisma.StringFieldUpdateOperationsInput | string
   cameras?: Prisma.CameraUncheckedUpdateManyWithoutPalletNestedInput
 }
@@ -323,6 +339,7 @@ export type PalletCreateManyInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   layerId: string
 }
 
@@ -334,6 +351,7 @@ export type PalletUpdateManyMutationInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type PalletUncheckedUpdateManyInput = {
@@ -344,6 +362,7 @@ export type PalletUncheckedUpdateManyInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   layerId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -355,6 +374,7 @@ export type PalletCountOrderByAggregateInput = {
   palletCode?: Prisma.SortOrder
   beginCell?: Prisma.SortOrder
   endStation?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   layerId?: Prisma.SortOrder
 }
 
@@ -366,6 +386,7 @@ export type PalletMaxOrderByAggregateInput = {
   palletCode?: Prisma.SortOrder
   beginCell?: Prisma.SortOrder
   endStation?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   layerId?: Prisma.SortOrder
 }
 
@@ -377,6 +398,7 @@ export type PalletMinOrderByAggregateInput = {
   palletCode?: Prisma.SortOrder
   beginCell?: Prisma.SortOrder
   endStation?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   layerId?: Prisma.SortOrder
 }
 
@@ -397,6 +419,10 @@ export type PalletScalarRelationFilter = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type PalletCreateNestedManyWithoutLayerInput = {
@@ -463,6 +489,7 @@ export type PalletCreateWithoutLayerInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   cameras?: Prisma.CameraCreateNestedManyWithoutPalletInput
 }
 
@@ -474,6 +501,7 @@ export type PalletUncheckedCreateWithoutLayerInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   cameras?: Prisma.CameraUncheckedCreateNestedManyWithoutPalletInput
 }
 
@@ -514,6 +542,7 @@ export type PalletScalarWhereInput = {
   palletCode?: Prisma.StringFilter<"Pallet"> | string
   beginCell?: Prisma.StringFilter<"Pallet"> | string
   endStation?: Prisma.StringFilter<"Pallet"> | string
+  isActive?: Prisma.BoolFilter<"Pallet"> | boolean
   layerId?: Prisma.StringFilter<"Pallet"> | string
 }
 
@@ -525,6 +554,7 @@ export type PalletCreateWithoutCamerasInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   layer: Prisma.LayerCreateNestedOneWithoutPalletsInput
 }
 
@@ -536,6 +566,7 @@ export type PalletUncheckedCreateWithoutCamerasInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
   layerId: string
 }
 
@@ -563,6 +594,7 @@ export type PalletUpdateWithoutCamerasInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   layer?: Prisma.LayerUpdateOneRequiredWithoutPalletsNestedInput
 }
 
@@ -574,6 +606,7 @@ export type PalletUncheckedUpdateWithoutCamerasInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   layerId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -585,6 +618,7 @@ export type PalletCreateManyLayerInput = {
   palletCode: string
   beginCell: string
   endStation: string
+  isActive: boolean
 }
 
 export type PalletUpdateWithoutLayerInput = {
@@ -595,6 +629,7 @@ export type PalletUpdateWithoutLayerInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cameras?: Prisma.CameraUpdateManyWithoutPalletNestedInput
 }
 
@@ -606,6 +641,7 @@ export type PalletUncheckedUpdateWithoutLayerInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cameras?: Prisma.CameraUncheckedUpdateManyWithoutPalletNestedInput
 }
 
@@ -617,6 +653,7 @@ export type PalletUncheckedUpdateManyWithoutLayerInput = {
   palletCode?: Prisma.StringFieldUpdateOperationsInput | string
   beginCell?: Prisma.StringFieldUpdateOperationsInput | string
   endStation?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -658,6 +695,7 @@ export type PalletSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   palletCode?: boolean
   beginCell?: boolean
   endStation?: boolean
+  isActive?: boolean
   layerId?: boolean
   cameras?: boolean | Prisma.Pallet$camerasArgs<ExtArgs>
   layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
@@ -672,6 +710,7 @@ export type PalletSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   palletCode?: boolean
   beginCell?: boolean
   endStation?: boolean
+  isActive?: boolean
   layerId?: boolean
   layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pallet"]>
@@ -684,6 +723,7 @@ export type PalletSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   palletCode?: boolean
   beginCell?: boolean
   endStation?: boolean
+  isActive?: boolean
   layerId?: boolean
   layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pallet"]>
@@ -696,10 +736,11 @@ export type PalletSelectScalar = {
   palletCode?: boolean
   beginCell?: boolean
   endStation?: boolean
+  isActive?: boolean
   layerId?: boolean
 }
 
-export type PalletOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "description" | "taskId" | "palletCode" | "beginCell" | "endStation" | "layerId", ExtArgs["result"]["pallet"]>
+export type PalletOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "description" | "taskId" | "palletCode" | "beginCell" | "endStation" | "isActive" | "layerId", ExtArgs["result"]["pallet"]>
 export type PalletInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cameras?: boolean | Prisma.Pallet$camerasArgs<ExtArgs>
   layer?: boolean | Prisma.LayerDefaultArgs<ExtArgs>
@@ -726,6 +767,7 @@ export type $PalletPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     palletCode: string
     beginCell: string
     endStation: string
+    isActive: boolean
     layerId: string
   }, ExtArgs["result"]["pallet"]>
   composites: {}
@@ -1159,6 +1201,7 @@ export interface PalletFieldRefs {
   readonly palletCode: Prisma.FieldRef<"Pallet", 'String'>
   readonly beginCell: Prisma.FieldRef<"Pallet", 'String'>
   readonly endStation: Prisma.FieldRef<"Pallet", 'String'>
+  readonly isActive: Prisma.FieldRef<"Pallet", 'Boolean'>
   readonly layerId: Prisma.FieldRef<"Pallet", 'String'>
 }
     
